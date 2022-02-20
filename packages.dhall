@@ -1,104 +1,175 @@
-{-
-Welcome to your new Dhall package-set!
-
-Below are instructions for how to edit this file for most use
-cases, so that you don't need to know Dhall to use it.
-
-## Use Cases
-
-Most will want to do one or both of these options:
-1. Override/Patch a package's dependency
-2. Add a package not already in the default package set
-
-This file will continue to work whether you use one or both options.
-Instructions for each option are explained below.
-
-### Overriding/Patching a package
-
-Purpose:
-- Change a package's dependency to a newer/older release than the
-    default package set's release
-- Use your own modified version of some dependency that may
-    include new API, changed API, removed API by
-    using your custom git repo of the library rather than
-    the package set's repo
-
-Syntax:
-where `entityName` is one of the following:
-- dependencies
-- repo
-- version
--------------------------------
-let upstream = --
-in  upstream
-  with packageName.entityName = "new value"
--------------------------------
-
-Example:
--------------------------------
-let upstream = --
-in  upstream
-  with halogen.version = "master"
-  with halogen.repo = "https://example.com/path/to/git/repo.git"
-
-  with halogen-vdom.version = "v4.0.0"
-  with halogen-vdom.dependencies = [ "extra-dependency" ] # halogen-vdom.dependencies
--------------------------------
-
-### Additions
-
-Purpose:
-- Add packages that aren't already included in the default package set
-
-Syntax:
-where `<version>` is:
-- a tag (i.e. "v4.0.0")
-- a branch (i.e. "master")
-- commit hash (i.e. "701f3e44aafb1a6459281714858fadf2c4c2a977")
--------------------------------
-let upstream = --
-in  upstream
-  with new-package-name =
-    { dependencies =
-       [ "dependency1"
-       , "dependency2"
-       ]
-    , repo =
-       "https://example.com/path/to/git/repo.git"
-    , version =
-        "<version>"
-    }
--------------------------------
-
-Example:
--------------------------------
-let upstream = --
-in  upstream
-  with benchotron =
-      { dependencies =
-          [ "arrays"
-          , "exists"
-          , "profunctor"
-          , "strings"
-          , "quickcheck"
-          , "lcg"
-          , "transformers"
-          , "foldable-traversable"
-          , "exceptions"
-          , "node-fs"
-          , "node-buffer"
-          , "node-readline"
-          , "datetime"
-          , "now"
-          ]
-      , repo =
-          "https://github.com/hdgarrood/purescript-benchotron.git"
-      , version =
-          "v7.0.0"
-      }
--------------------------------
--}
 let upstream =
       https://github.com/purescript/package-sets/releases/download/psc-0.14.4-20211109/packages.dhall sha256:e8d8d5b339f6d46d950da90037c6c38e8809f7e34f727373089ab82c080fc709
 
 in  upstream
+  with
+    postgresql-client =
+      { dependencies =
+        [ "aff"
+        , "argonaut"
+        , "arrays"
+        , "assert"
+        , "bifunctors"
+        , "bytestrings"
+        , "datetime"
+        , "decimals"
+        , "dotenv"
+        , "effect"
+        , "either"
+        , "enums"
+        , "exceptions"
+        , "foldable-traversable"
+        , "foreign"
+        , "foreign-generic"
+        , "foreign-object"
+        , "identity"
+        , "integers"
+        , "js-date"
+        , "lists"
+        , "math"
+        , "maybe"
+        , "newtype"
+        , "node-process"
+        , "nullable"
+        , "ordered-collections"
+        , "partial"
+        , "polyform"
+        , "polyform-batteries-core"
+        , "polyform-batteries-env"
+        , "prelude"
+        , "psci-support"
+        , "string-parsers"
+        , "strings"
+        , "test-unit"
+        , "transformers"
+        , "tuples"
+        , "typelevel-prelude"
+        , "validation"
+        ]
+      , repo = "https://github.com/rightfold/purescript-postgresql-client"
+      , version = "v3.3.0"
+      }
+  with
+    polyform = 
+      { dependencies =
+        [ "arrays"
+        , "bifunctors"
+        , "control"
+        , "effect"
+        , "either"
+        , "enums"
+        , "functors"
+        , "heterogeneous"
+        , "identity"
+        , "invariant"
+        , "lists"
+        , "maybe"
+        , "newtype"
+        , "ordered-collections"
+        , "parallel"
+        , "partial"
+        , "prelude"
+        , "profunctor"
+        , "psci-support"
+        , "quickcheck"
+        , "quickcheck-laws"
+        , "record"
+        , "transformers"
+        , "tuples"
+        , "type-equality"
+        , "typelevel-prelude"
+        , "unsafe-coerce"
+        , "validation"
+        , "variant"
+        ]
+      , repo = "https://github.com/purescript-polyform/polyform"
+      , version = "v0.9.0"
+      }
+  with
+    polyform-batteries-core = 
+      { dependencies =
+        [ "arrays"
+        , "decimals"
+        , "effect"
+        , "enums"
+        , "integers"
+        , "lazy"
+        , "maybe"
+        , "numbers"
+        , "partial"
+        , "polyform"
+        , "prelude"
+        , "psci-support"
+        , "quickcheck"
+        , "strings"
+        , "test-unit"
+        , "typelevel-prelude"
+        , "unsafe-coerce"
+        , "validation"
+        , "variant"
+        ]
+      , repo = "https://github.com/purescript-polyform/batteries-core"
+      , version = "v0.2.0"
+      }
+  with
+    polyform-batteries-env =
+      { dependencies =
+          [ "arrays"
+          , "identity"
+          , "maybe"
+          , "ordered-collections"
+          , "polyform"
+          , "polyform-batteries-core"
+          , "prelude"
+          , "psci-support"
+          , "typelevel-prelude"
+          ]
+      , repo = "https://github.com/purescript-polyform/batteries-env"
+      , version = "v0.1.0"
+      }
+  with
+    selda = 
+      { dependencies =
+          [ "aff"
+          , "arrays"
+          , "bifunctors"
+          , "console"
+          , "datetime"
+          , "dodo-printer"
+          , "dotenv"
+          , "effect"
+          , "either"
+          , "enums"
+          , "exceptions"
+          , "exists"
+          , "foldable-traversable"
+          , "foreign"
+          , "foreign-object"
+          , "heterogeneous"
+          , "leibniz"
+          , "lists"
+          , "maybe"
+          , "newtype"
+          , "node-process"
+          , "node-sqlite3"
+          , "ordered-collections"
+          , "partial"
+          , "polyform"
+          , "polyform-batteries-core"
+          , "polyform-batteries-env"
+          , "postgresql-client"
+          , "prelude"
+          , "record"
+          , "simple-json"
+          , "strings"
+          , "test-unit"
+          , "transformers"
+          , "tuples"
+          , "typelevel-prelude"
+          , "unsafe-coerce"
+          , "validation"
+          , "variant"
+          ]
+      , repo = "https://github.com/Kamirus/purescript-selda"
+      , version = "master"
+      }
