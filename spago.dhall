@@ -12,15 +12,24 @@ to generate this file without the comments in this block.
 -}
 { name = "my-project"
 , dependencies =
-  [ "console"
+  [ "codec-argonaut"
+  , "console"
   , "effect"
+  , "either"
+  , "foldable-traversable"
+  , "foreign"
   , "functions"
+  , "lists"
   , "maybe"
   , "payload"
   , "postgresql-client"
   , "prelude"
+  , "profunctor-lenses"
   , "psci-support"
   , "selda"
+  , "simple-json"
+  , "strings"
+  , "transformers"
   ]
 , packages = ./packages.dhall
 , sources = [ "src/**/*.purs", "test/**/*.purs" ]
