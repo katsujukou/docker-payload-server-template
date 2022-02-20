@@ -1,0 +1,26 @@
+{
+  "name": "sample-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "migrate": "node-pg-migrate -m database/migrations --template-file-name database/templates/default.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.10.7",
+    "decimal.js": "^10.3.1",
+    "dotenv": "^16.0.0",
+    "esbuild": "^0.14.23",
+    "jsonwebtoken": "^8.5.1",
+    "node-pg-migrate": "^6.2.1",
+    "pg": "^8.7.3",
+    "uuid": "^8.3.2"
+  }
+}
